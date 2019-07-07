@@ -1,0 +1,7 @@
+
+V
+squid:S106*"9Replace this use of System.out or System.err by a logger.(²•âÄ8ÿ­ÁÔ¼-
+V
+squid:S106-"9Replace this use of System.out or System.err by a logger.(ê×¼©8‚ÁĞÓ¼-
+©%squid:RedundantThrowsDeclarationCheck%"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(­Ÿâ¨üÿÿÿÿ8ÍˆÔ¼-
+fsquid:S2095'"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(å„Ş8‚ÁĞÓ¼-

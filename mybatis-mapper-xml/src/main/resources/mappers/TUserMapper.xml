@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="club.javalearn.mybatis.mapper.TUserMapper">
+
+    <resultMap id="BaseResultMap" type="TUser">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="note" property="note" jdbcType="VARCHAR"/>
+        <result column="position_id" property="positionId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		id, user_name, real_name, sex, mobile, email, note,
+		position_id
+	</sql>
+
+    <select id="selectById" resultMap="BaseResultMap"	parameterType="java.lang.Integer">
+		select
+			<include refid="Base_Column_List"/>
+		from t_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+    <select id="selectByNameAndEmail" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByNameAndAge" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where name = #{name,jdbcType=VARCHAR}
+        and age = #{age,jdbcType=INTEGER}
+    </select>
+    <select id="selectByNameAndNote" parameterType="club.javalearn.mybatis.vo.NameNoteBen" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where name = #{name,jdbcType=VARCHAR}
+        and note = #{note,jdbcType=VARCHAR}
+    </select>
+
+    <!--Mybatis获取id时获取的是最大的id数+1，这样就不会造成主键冲突的问题
+       1. insert 操作时，不需要在TUser中设置主键值
+       2. insert 语句中，不用插入主键值
+       3. 如果1.2都做了，那么就获取最大id数+1
+       4. 注意适用在mysql。sql server 有自动增长的列
+    -->
+    <insert id="insert" parameterType="TUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user (<include refid="Base_Column_List"/>) values(
+        id, userName, realName, sex, mobile, email, note,
+        positionId
+        )
+    </insert>
+
+    <!--使用useGeneratedKeys和keyProperty是对selectKey的简写,只适用mysql和SQL Server有自动增长列的数据:
+        1. oracle中需要使用selectKey来获取主键值
+        <selectKey keyProperty="id" order="BEFORE" resultType="int">
+            select SEQ_ID.nextval from dual
+        </selectKey>
+        2. mysql中的useGeneratedKeys实际上是下面的代码:
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>
+    -->
+    <insert id="insert2" parameterType="TUser" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into t_user (<include refid="Base_Column_List"/>) values(
+        id, userName, realName, sex, mobile, email, note,
+        positionId
+        )
+    </insert>
+
+
+    <select id="findListBySymbol" resultMap="BaseResultMap">
+        select ${inCol} from ${tableName} where sex = #{sex} order by ${orderStr}
+    </select>
+
+</mapper>
