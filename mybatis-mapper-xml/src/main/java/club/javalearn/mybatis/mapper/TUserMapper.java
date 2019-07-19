@@ -18,6 +18,8 @@ public interface TUserMapper {
 
     TUser selectById(Integer id);
 
+    List<TUser> selectByUser(TUser user);
+
     List<TUser> selectByNameAndEmail(Map<String, Object> map);
 
     List<TUser> selectByNameAndAge(@Param("name") String name, @Param("age") Integer age);
@@ -56,8 +58,13 @@ public interface TUserMapper {
     List<TUser> findAll();
 
 
+
     @Insert("insert into t_user(id,real_name) values(id,realName)")
     @Options(useGeneratedKeys = true,keyProperty = "id")
     Integer insert3(TUser tUser);
+
+
+
+    void update(TUser user);
 
 }

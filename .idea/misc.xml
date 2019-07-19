@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/mybatis-quick-start/pom.xml" />
         <option value="$PROJECT_DIR$/mybatis-helloworld/pom.xml" />
         <option value="$PROJECT_DIR$/mybatis-mapper-xml/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis-generator/pom.xml" />
       </list>
     </option>
   </component>

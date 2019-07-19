@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/mybatis-generator/mybatis-generator.iml" filepath="$PROJECT_DIR$/mybatis-generator/mybatis-generator.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis-helloworld/mybatis-helloworld.iml" filepath="$PROJECT_DIR$/mybatis-helloworld/mybatis-helloworld.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis-mapper-xml/mybatis-mapper-xml.iml" filepath="$PROJECT_DIR$/mybatis-mapper-xml/mybatis-mapper-xml.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis-quick-start/mybatis-quick-start.iml" filepath="$PROJECT_DIR$/mybatis-quick-start/mybatis-quick-start.iml" />
