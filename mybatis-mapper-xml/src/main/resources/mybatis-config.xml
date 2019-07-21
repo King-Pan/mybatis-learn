@@ -29,6 +29,7 @@
 
 		<!--直接映射到相应的mapper文件-->
 		<mapper  resource="mappers/TUserMapper.xml" />
+		<mapper  resource="mappers/TRoleMapper.xml" />
 	</mappers>
 
 <!--	<mappers>-->

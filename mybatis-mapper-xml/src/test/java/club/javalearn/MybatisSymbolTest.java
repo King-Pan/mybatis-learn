@@ -1,6 +1,8 @@
 package club.javalearn;
 
+import club.javalearn.mybatis.entity.TRole;
 import club.javalearn.mybatis.entity.TUser;
+import club.javalearn.mybatis.mapper.TRoleMapper;
 import club.javalearn.mybatis.mapper.TUserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,7 +13,10 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @className: MybatisSymbolTest
@@ -64,5 +69,69 @@ public class MybatisSymbolTest {
     public void trimTest(){
 
     }
+
+    @Test
+    public void foreachTest1(){
+        // 2.获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 3.获取对应mapper
+        TRoleMapper mapper = sqlSession.getMapper(TRoleMapper.class);
+        //4.执行
+        List<Integer> ids = new ArrayList<>(10);
+        ids.add(1);
+        ids.add(2);
+        ids.add(3);
+        List<TRole> roleList = mapper.selectByIds(ids);
+        System.out.println(roleList);
+    }
+
+    @Test
+    public void foreachTest2(){
+        // 2.获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 3.获取对应mapper
+        TRoleMapper mapper = sqlSession.getMapper(TRoleMapper.class);
+        //4.执行
+        List<Integer> ids = new ArrayList<>(10);
+        ids.add(1);
+        ids.add(2);
+        ids.add(3);
+        ids.add(4);
+        List<TRole> roleList = mapper.selectByArray(ids.toArray(new Integer[]{}));
+        System.out.println(roleList);
+    }
+
+    @Test
+    public void foreachInsertByMapTest(){
+        // 2.获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 3.获取对应mapper
+        TRoleMapper mapper = sqlSession.getMapper(TRoleMapper.class);
+        //4.执行
+        Map<String,Object> map = new HashMap<>(10);
+        map.put("id",5);
+        map.put("role_name","supper man");
+        map.put("note","超级管理员");
+        int result = mapper.insertByMap(map);
+        sqlSession.commit();
+        System.out.println(result);
+    }
+
+    @Test
+    public void foreachSelectByMapTest(){
+        // 2.获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 3.获取对应mapper
+        TRoleMapper mapper = sqlSession.getMapper(TRoleMapper.class);
+        //4.执行
+        Map<String,Object> map = new HashMap<>(10);
+        map.put("ids",new Integer[]{1,3,5,6});
+        map.put("roleName","supper");
+        map.put("note","超级管理员");
+        List<TRole> roleList = mapper.selectByMap(map);
+        System.out.println(roleList);
+    }
+
+
 
 }

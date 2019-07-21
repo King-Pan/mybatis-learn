@@ -35,20 +35,20 @@
         	targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
         	targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
      	-->
-        <javaModelGenerator targetPackage="club.javalearn.project.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="club.javalearn.mybatis.entity" targetProject="src/main/java">
             <!-- 设置一个根对象，
                           如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；在Table的rootClass属性中可以覆盖该选项
                           注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：
                     1，属性名相同，类型相同，有相同的getter/setter方法；
              -->
-            <property name="rootClass" value="club.javalearn.project.entity.BaseEntity" />
+            <!--<property name="rootClass" value="club.javalearn.project.entity.BaseEntity" />-->
         </javaModelGenerator>
         <!--生成映射文件存放位置-->
         <!-- 生成SQL map的XML文件生成器，
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
         	targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
-        <sqlMapGenerator targetPackage="com.demo.mapper" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="club.javalearn.mybatis.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 对于mybatis来说，即生成Mapper接口，注意，如果没有配置该元素，那么默认不会生成Mapper接口
@@ -58,10 +58,10 @@
 		            3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
 		        注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
 		    -->
-        <javaClientGenerator targetPackage="club.javalearn.project.mapper"	targetProject="src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="club.javalearn.mybatis.mapper"	targetProject="src/main/java" type="XMLMAPPER" />
 
         <!-- shema 数据库 tableName表明 -->
-        <table schema="${jdbc_username}" tableName="%"   enableCountByExample="false"
+        <table schema="${jdbc_username}" tableName="t_role"   enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="MySql"/>

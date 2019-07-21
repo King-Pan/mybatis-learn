@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.javalearn.mybatis.mapper.TRoleMapper">
+  <resultMap id="BaseResultMap" type="club.javalearn.mybatis.entity.TRole">
+
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="Base_Column_List">
+
+    id, role_name, note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByIds" resultMap="BaseResultMap">
+    select
+    id, role_name, note
+    from t_role
+    where id in
+    <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </select>
+  <select id="selectByArray" resultMap="BaseResultMap">
+    select
+    id, role_name, note
+    from t_role
+    where id in
+    <foreach collection="array" index="index" item="item" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </select>
+  <select id="selectByMap" resultMap="BaseResultMap" >
+    select
+    id, role_name, note
+    from t_role
+    where id in
+    <foreach collection="ids" index="index" item="key" open="(" close=")" separator=",">
+      #{key}
+    </foreach>
+    <if test="roleName != null and roleName !=''">
+      and role_name like concat('%',#{roleName},'%')
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="club.javalearn.mybatis.entity.TRole">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_role (id, role_name, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertByMap">
+    insert into t_role
+    <foreach collection="params.keys" item="item" open="(" separator="," close=")">
+      ${item}
+    </foreach>
+    values
+    <foreach collection="params.keys" item="item" open="(" separator="," close=")">
+      #{params[${item}]}
+    </foreach>
+  </insert>
+
+
+  <insert id="insertSelective" parameterType="club.javalearn.mybatis.entity.TRole">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="club.javalearn.mybatis.entity.TRole">
+    update t_role
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="club.javalearn.mybatis.entity.TRole">
+    update t_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

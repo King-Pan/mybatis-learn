@@ -8,10 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mybatis-mapper-xml" />
         <module name="mybatis-helloworld" />
+        <module name="mybatis-example" />
         <module name="mybatis-generator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="mybatis-example" target="1.8" />
       <module name="mybatis-generator" target="1.8" />
       <module name="mybatis-helloworld" target="1.7" />
       <module name="mybatis-learn" target="1.5" />
@@ -21,6 +23,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mybatis-example" options="-parameters" />
       <module name="mybatis-generator" options="-parameters" />
     </option>
   </component>
