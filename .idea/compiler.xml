@@ -13,7 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mybatis-example" target="1.8" />
+      <module name="mybatis-example" target="1.5" />
       <module name="mybatis-generator" target="1.8" />
       <module name="mybatis-helloworld" target="1.7" />
       <module name="mybatis-learn" target="1.5" />
