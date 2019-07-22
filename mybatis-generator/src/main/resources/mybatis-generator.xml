@@ -19,7 +19,7 @@
         <property name="javaFileEncoding" value="UTF-8"/>
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="false" />
+            <property name="suppressAllComments" value="true" />
             <!-- 阻止注释中包含时间戳 true：是 ： false:否 -->
             <property name="suppressDate" value="true" />
             <!--  注释是否包含数据库表的注释信息  true：是 ： false:否 -->
@@ -61,9 +61,12 @@
         <javaClientGenerator targetPackage="club.javalearn.mybatis.mapper"	targetProject="src/main/java" type="XMLMAPPER" />
 
         <!-- shema 数据库 tableName表明 -->
-        <table schema="${jdbc_username}" tableName="t_role"   enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
+<!--        <table schema="${jdbc_username}" tableName="t_user"   enableCountByExample="false"-->
+<!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <generatedKey column="id" sqlStatement="MySql"/>-->
+<!--        </table>-->
+        <table schema="${jdbc_username}" tableName="t_user">
             <generatedKey column="id" sqlStatement="MySql"/>
         </table>
     </context>
