@@ -5,6 +5,8 @@
 	<settings>
 		<!--下划线转驼峰-->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!--将积极加载改为消息加载即按需加载-->
+		<setting name="aggressiveLazyLoading" value="false"/>
 	</settings>
 	<typeAliases>
 		<package name="club.javalearn.mybatis.entity"/>
@@ -30,6 +32,7 @@
 		<!--直接映射到相应的mapper文件-->
 		<mapper  resource="mappers/TUserMapper.xml" />
 		<mapper  resource="mappers/TRoleMapper.xml" />
+		<mapper  resource="mappers/TPositionMapper.xml" />
 	</mappers>
 
 <!--	<mappers>-->

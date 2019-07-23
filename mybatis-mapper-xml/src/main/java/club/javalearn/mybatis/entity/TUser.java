@@ -24,5 +24,5 @@ public class TUser {
 
     private String note;
 
-    private Integer positionId;
+    private TPosition position;
 }

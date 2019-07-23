@@ -18,6 +18,10 @@ public interface TUserMapper {
 
     TUser selectById(Integer id);
 
+    List<TUser> selectPosition1();
+
+    List<TUser> selectPosition2();
+
     List<TUser> selectByUser(TUser user);
 
     List<TUser> selectByNameAndEmail(Map<String, Object> map);

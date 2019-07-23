@@ -10,7 +10,19 @@
         <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="note" property="note" jdbcType="VARCHAR"/>
-        <result column="position_id" property="positionId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="SelectPositionMap" type="TUser" extends="BaseResultMap">
+        <association property="position" javaType="TPosition" columnPrefix="posi_">
+            <id column="id" property="id" />
+            <result column="postName" property="postName"/>
+            <result column="note" property="note" />
+        </association>
+    </resultMap>
+
+    <resultMap id="SelectPositionMap2" type="TUser" extends="BaseResultMap">
+        <association property="position" column="position_id" javaType="TPosition"  select="club.javalearn.mybatis.mapper.TPositionMapper.selectById">
+        </association>
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -24,6 +36,16 @@
 		from t_user
 		where id = #{id,jdbcType=INTEGER}
 	</select>
+    <select id="selectPosition1" resultMap="SelectPositionMap">
+        select t.id, user_name, real_name, sex, mobile, email, t.note,p.id posi_id,p.post_name posi_postName,p.note posi_note
+        from t_user t inner join t_position p on t.position_id = p.id
+    </select>
+    <select id="selectPosition2" resultMap="SelectPositionMap2">
+        select
+        u.id, u.user_name, u.real_name, u.sex, u.mobile, u.email, u.note,
+		u.position_id
+        from t_user u
+    </select>
 
     <select id="selectByUser" resultMap="BaseResultMap"	parameterType="TUser">
         select

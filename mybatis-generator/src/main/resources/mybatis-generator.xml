@@ -14,20 +14,20 @@
               1，MyBatis3：默认的值，生成基于MyBatis3.x以上版本的内容，包括XXXBySample；
             2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample；
         -->
-    <context id="context1" targetRuntime="MyBatis3"	defaultModelType="flat">
+    <context id="context1" targetRuntime="MyBatis3" defaultModelType="flat">
         <!-- 生成的Java文件的编码 -->
         <property name="javaFileEncoding" value="UTF-8"/>
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true" />
+            <property name="suppressAllComments" value="true"/>
             <!-- 阻止注释中包含时间戳 true：是 ： false:否 -->
-            <property name="suppressDate" value="true" />
+            <property name="suppressDate" value="true"/>
             <!--  注释是否包含数据库表的注释信息  true：是 ： false:否 -->
-            <property name="addRemarkComments" value="true" />
+            <property name="addRemarkComments" value="true"/>
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/mybatis" userId="root" password="123456" />
+                        connectionURL="jdbc:mysql://localhost:3306/mybatis" userId="root" password="123456"/>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
@@ -58,37 +58,40 @@
 		            3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
 		        注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
 		    -->
-        <javaClientGenerator targetPackage="club.javalearn.mybatis.mapper"	targetProject="src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="club.javalearn.mybatis.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
 
         <!-- shema 数据库 tableName表明 -->
-<!--        <table schema="${jdbc_username}" tableName="t_user"   enableCountByExample="false"-->
-<!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
-<!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--        <table schema="${jdbc_username}" tableName="t_user"   enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--            <generatedKey column="id" sqlStatement="MySql"/>-->
+        <!--        </table>-->
+<!--        <table schema="mybatis" tableName="t_health_report_female">-->
 <!--            <generatedKey column="id" sqlStatement="MySql"/>-->
 <!--        </table>-->
-        <table schema="mybatis" tableName="t_health_report_female">
+<!--        <table schema="mybatis" tableName="t_health_report_male">-->
+<!--            <generatedKey column="id" sqlStatement="MySql"/>-->
+<!--        </table>-->
+<!--        <table schema="mybatis" tableName="t_job_history">-->
+<!--            <generatedKey column="id" sqlStatement="MySql"/>-->
+<!--        </table>-->
+        <table schema="mybatis" tableName="t_position" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true">
             <generatedKey column="id" sqlStatement="MySql"/>
         </table>
-        <table schema="mybatis" tableName="t_health_report_male">
-            <generatedKey column="id" sqlStatement="MySql"/>
-        </table>
-        <table schema="mybatis" tableName="t_job_history">
-            <generatedKey column="id" sqlStatement="MySql"/>
-        </table>
-        <table schema="mybatis" tableName="t_position">
-            <generatedKey column="id" sqlStatement="MySql"/>
-        </table>
-        <table schema="mybatis" tableName="t_role">
-            <generatedKey column="id" sqlStatement="MySql"/>
-        </table>
-        <table schema="mybatis" tableName="t_role_permission">
-            <generatedKey column="id" sqlStatement="MySql"/>
-        </table>
-        <table schema="mybatis" tableName="t_user">
-            <generatedKey column="id" sqlStatement="MySql"/>
-        </table>
-        <table schema="mybatis" tableName="t_user_role">
-            <generatedKey column="id" sqlStatement="MySql"/>
-        </table>
+<!--        <table schema="mybatis" tableName="t_role">-->
+<!--            <generatedKey column="id" sqlStatement="MySql"/>-->
+<!--        </table>-->
+<!--        <table schema="mybatis" tableName="t_role_permission">-->
+<!--            <generatedKey column="id" sqlStatement="MySql"/>-->
+<!--        </table>-->
+<!--        <table schema="mybatis" tableName="t_user">-->
+<!--            <generatedKey column="id" sqlStatement="MySql"/>-->
+<!--        </table>-->
+<!--        <table schema="mybatis" tableName="t_user_role">-->
+<!--            <generatedKey column="id" sqlStatement="MySql"/>-->
+<!--        </table>-->
     </context>
 </generatorConfiguration>
