@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.javalearn.mybatis.mapper.TJobHistoryMapper">
+  <resultMap id="BaseResultMap" type="club.javalearn.mybatis.entity.TJobHistory">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="comp_name" jdbcType="VARCHAR" property="compName" />
+    <result column="years" jdbcType="INTEGER" property="years" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+  </resultMap>
+
+  <insert id="insert" parameterType="club.javalearn.mybatis.entity.TJobHistory">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_job_history (id, user_id, comp_name, 
+      years, title)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{compName,jdbcType=VARCHAR}, 
+      #{years,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="club.javalearn.mybatis.entity.TJobHistory">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_job_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="compName != null">
+        comp_name,
+      </if>
+      <if test="years != null">
+        years,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="compName != null">
+        #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="years != null">
+        #{years,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByUserId" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from t_job_history
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <sql id="Base_Column_List">
+		id, user_id, comp_name, years, title
+	</sql>
+</mapper>

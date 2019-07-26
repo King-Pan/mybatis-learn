@@ -71,4 +71,8 @@ public interface TUserMapper {
 
     void update(TUser user);
 
+    List<TUser> selectJobs1();
+
+    List<TUser> selectJobs2();
+
 }

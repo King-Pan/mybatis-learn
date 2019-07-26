@@ -41,9 +41,9 @@
         from t_user t inner join t_position p on t.position_id = p.id
     </select>
     <select id="selectPosition2" resultMap="SelectPositionMap2">
-        select
-        u.id, u.user_name, u.real_name, u.sex, u.mobile, u.email, u.note,
-		u.position_id
+        select u.id, u.user_name, u.real_name, u.sex,
+               u.mobile, u.email, u.note,
+		       u.position_id
         from t_user u
     </select>
 
@@ -133,5 +133,49 @@
             </trim>
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+
+    <resultMap id="selectJobs1" type="TUser" extends="BaseResultMap">
+        <collection property="jobs" ofType="TJobHistory">
+            <id column="b_id" property="id"/>
+            <result column="user_id" property="userId"/>
+            <result column="comp_name" property="compName" jdbcType="VARCHAR" />
+            <result column="years" property="years" jdbcType="INTEGER" />
+            <result column="title" property="title" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+
+    <resultMap id="selectJobs2" type="TUser" extends="BaseResultMap">
+        <collection property="jobs" fetchType="lazy" column="id"    select="club.javalearn.mybatis.mapper.TJobHistoryMapper.selectByUserId" />
+    </resultMap>
+
+    <select id="selectJobs1" resultMap="selectJobs1">
+        select
+		a.id,
+		a.user_name,
+		a.real_name,
+		a.sex,
+		a.mobile,
+		a.email,
+		a.note,
+		b.id as b_id,
+		b.user_id,
+		b.comp_name,
+		b.years,
+		b.title
+		from t_user a,
+		t_job_history b
+		where a.id = b.user_id
+    </select>
+
+    <select id="selectJobs2" resultMap="selectJobs2">
+        select
+		a.id,
+		a.user_name,
+		a.real_name,
+		a.sex,
+		a.mobile
+		from t_user a
+    </select>
 
 </mapper>

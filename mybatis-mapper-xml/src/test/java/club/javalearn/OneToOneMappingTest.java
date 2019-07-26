@@ -9,16 +9,18 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
 /**
- * @author king-pan
+ * @BelongsProject: mybatis-learn
+ * @BelongsPackage: club.javalearn
+ * @Author: king-pan
+ * @CreateTime: 2019-07-26 16:34
+ * @Description: 一对一关系映射
  */
-public class LinkedQueryTest {
-
+public class OneToOneMappingTest {
     private SqlSessionFactory sqlSessionFactory;
 
     @Before
@@ -60,7 +62,4 @@ public class LinkedQueryTest {
         }
 
     }
-
-
-
 }

@@ -5,6 +5,8 @@
 	<settings>
 		<!--下划线转驼峰-->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!--打开延迟加载-->
+		<setting name="lazyLoadingEnabled" value="true"/>
 		<!--将积极加载改为消息加载即按需加载-->
 		<setting name="aggressiveLazyLoading" value="false"/>
 	</settings>
@@ -33,6 +35,7 @@
 		<mapper  resource="mappers/TUserMapper.xml" />
 		<mapper  resource="mappers/TRoleMapper.xml" />
 		<mapper  resource="mappers/TPositionMapper.xml" />
+		<mapper  resource="mappers/TJobHistoryMapper.xml" />
 	</mappers>
 
 <!--	<mappers>-->

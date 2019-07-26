@@ -2,6 +2,8 @@ package club.javalearn.mybatis.entity;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @className: TUser
  * @description:
@@ -25,4 +27,6 @@ public class TUser {
     private String note;
 
     private TPosition position;
+
+    private List<TJobHistory> jobs;
 }
