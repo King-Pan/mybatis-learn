@@ -3,6 +3,8 @@ package club.javalearn.mybatis.entity;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class TRole {
 
@@ -11,4 +13,6 @@ public class TRole {
     private String roleName;
 
     private String note;
+
+    private List<TUser> users;
 }

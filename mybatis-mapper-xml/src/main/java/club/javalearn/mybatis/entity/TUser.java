@@ -29,4 +29,6 @@ public class TUser {
     private TPosition position;
 
     private List<TJobHistory> jobs;
+
+    private List<TRole> roles;
 }

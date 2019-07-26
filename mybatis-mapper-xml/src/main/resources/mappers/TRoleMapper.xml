@@ -116,4 +116,13 @@
       note = #{note,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <resultMap id="selectRoleUser" type="TRole" extends="BaseResultMap">
+    <collection column="user_id" fetchType="lazy" property="users" ofType="TUser" select="club.javalearn.mybatis.mapper.TUserMapper.selectById"></collection>
+  </resultMap>
+  <select id="selectRoleUser" resultMap="selectRoleUser">
+    select
+    r.id, r.role_name, r.note,ur.user_id
+    from t_role r,t_user_role ur where r.id =ur.role_id
+  </select>
 </mapper>

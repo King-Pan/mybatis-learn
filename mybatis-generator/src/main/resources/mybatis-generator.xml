@@ -76,7 +76,7 @@
 <!--        <table schema="mybatis" tableName="t_job_history">-->
 <!--            <generatedKey column="id" sqlStatement="MySql"/>-->
 <!--        </table>-->
-        <table schema="mybatis" tableName="t_job_history" enableCountByExample="false"
+        <table schema="mybatis" tableName="t_role" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="true">
             <generatedKey column="id" sqlStatement="MySql"/>

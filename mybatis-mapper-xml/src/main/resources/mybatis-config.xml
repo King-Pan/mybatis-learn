@@ -30,7 +30,6 @@
 
 	<!-- 映射文件，mapper的配置文件 -->
 	<mappers>
-
 		<!--直接映射到相应的mapper文件-->
 		<mapper  resource="mappers/TUserMapper.xml" />
 		<mapper  resource="mappers/TRoleMapper.xml" />
@@ -39,7 +38,7 @@
 	</mappers>
 
 <!--	<mappers>-->
-<!--		<mapper class="club.javalearn.mapper.TUserMapper"/>-->
+<!--		<package name="club/javalearn/mybatis/mapper"/>-->
 <!--	</mappers>-->
 
 

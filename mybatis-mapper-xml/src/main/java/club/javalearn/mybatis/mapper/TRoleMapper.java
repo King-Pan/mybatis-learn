@@ -33,4 +33,7 @@ public interface TRoleMapper {
 
     int insertByMap(@Param("params") Map<String,Object> map);
 
+
+    List<TRole> selectRoleUser();
+
 }
